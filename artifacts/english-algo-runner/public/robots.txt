@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://onlinealgoenglishrunner.pages.dev/sitemap.xml
