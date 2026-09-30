@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "English Algo Runner"
+description = "An offline educational pseudocode interpreter that lets students write English algorithms, run them with input, and inspect output and errors in a focused desktop-style workspace."
+version = "1.0.0"
+id = "artifacts/english-algo-runner"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25102
+
+[services.development]
+run = "pnpm --filter @workspace/english-algo-runner run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/english-algo-runner", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/english-algo-runner/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25102"
+BASE_PATH = "/"

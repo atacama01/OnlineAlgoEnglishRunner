@@ -1,0 +1,1877 @@
+You are an expert Flutter/Dart desktop developer and language/interpreter engineer.
+
+Build a complete, working desktop application called:
+
+English Algo Runner
+
+The application is an educational pseudocode interpreter/runner, similar in concept to AlgoBox, but using a simple ENGLISH pseudocode syntax.
+
+The purpose is to allow students and teachers to write educational algorithms, run them, provide input, and see the output.
+
+I already have Flutter installed on Windows.
+
+I want the fastest possible implementation.
+
+DO NOT give me a tutorial.
+DO NOT explain how to build it step by step.
+DO NOT give me partial code.
+DO NOT ask me to implement missing parts.
+
+Generate the COMPLETE project in one response, with all required source files.
+
+The project must be ready to run with:
+
+flutter pub get
+flutter run -d windows
+
+The final project should also be suitable for publishing on GitHub.
+
+============================================================
+1. CORE IDEA
+============================================================
+
+The application is NOT a general programming language.
+
+It is a small educational pseudocode interpreter.
+
+The workflow should be:
+
+1. Open the application.
+2. See a code editor.
+3. Write an algorithm.
+4. Click Run.
+5. If Read() is encountered, ask the user for input.
+6. Execute the algorithm.
+7. Display the result in an Output panel.
+8. If there is an error, display a clear error with the line number.
+
+Everything must work offline.
+
+No server.
+No Firebase.
+No database.
+No account.
+No Internet connection required.
+
+Keep dependencies to a minimum.
+
+============================================================
+2. LANGUAGE NAME
+============================================================
+
+The language can be called:
+
+English Algorithm Pseudocode
+
+Files use:
+
+.algo
+
+Example:
+
+addition.algo
+
+============================================================
+3. BASIC PROGRAM STRUCTURE
+============================================================
+
+Every main algorithm follows:
+
+Algorithm ProgramName
+
+Variables
+    ...
+
+Begin
+
+    ...
+
+End
+
+Example:
+
+Algorithm Addition
+
+Variables
+    a, b : Integer
+
+Begin
+    a <- 5
+    b <- 10
+    a <- a + b
+
+    Write("Result = ", a)
+End
+
+============================================================
+4. KEYWORDS
+============================================================
+
+The language must support:
+
+Algorithm
+Variables
+Begin
+End
+
+Read
+Write
+
+If
+Then
+Else
+EndIf
+
+For
+To
+Step
+Do
+EndFor
+
+While
+Do
+EndWhile
+
+Repeat
+Until
+
+Function
+Return
+EndFunction
+
+Procedure
+EndProcedure
+
+The keywords must be CASE-INSENSITIVE.
+
+All of these must work:
+
+Write
+write
+WRITE
+
+Begin
+begin
+BEGIN
+
+EndFunction
+endfunction
+ENDFUNCTION
+
+============================================================
+5. ASSIGNMENT OPERATOR
+============================================================
+
+The assignment operator MUST be:
+
+<-
+
+Examples:
+
+a <- 5
+b <- 10
+result <- a + b
+
+Do NOT use the Unicode arrow:
+
+←
+
+The lexer must correctly recognize:
+
+<-
+
+<=
+
+<
+
+as different operators.
+
+Examples:
+
+a <- 5
+
+If a <= 10 Then
+
+If a < 10 Then
+
+The parser must never confuse them.
+
+Use <- in ALL documentation, examples and generated sample algorithms.
+
+============================================================
+6. DATA TYPES
+============================================================
+
+Support:
+
+Integer
+Real
+String
+Boolean
+Character
+
+Examples:
+
+Variables
+    age : Integer
+    price : Real
+    name : String
+    active : Boolean
+    letter : Character
+
+Multiple variables:
+
+Variables
+    i, j, k : Integer
+
+============================================================
+7. VARIABLE INITIALIZATION
+============================================================
+
+Variables can be assigned in the Begin section:
+
+a <- 5
+price <- 12.5
+name <- "Ismail"
+active <- True
+
+Variables should normally be declared before use.
+
+Using an undeclared variable should produce:
+
+Runtime/Semantic Error:
+Variable 'x' has not been declared.
+
+Include the line number.
+
+============================================================
+8. ARITHMETIC OPERATORS
+============================================================
+
+Support:
+
++
+-
+*
+/
+%
+^
+
+Examples:
+
+a <- 5 + 10
+b <- a * 2
+c <- b / 3
+d <- 10 % 3
+p <- 2 ^ 5
+
+Respect normal mathematical operator precedence.
+
+Parentheses must work:
+
+result <- (a + b) * c
+
+============================================================
+9. COMPARISON OPERATORS
+============================================================
+
+Support:
+
+=
+==
+<>
+!=
+<
+>
+<=
+>=
+
+Examples:
+
+If age >= 18 Then
+    Write("Adult")
+EndIf
+
+If a = b Then
+    Write("Equal")
+EndIf
+
+If a <> b Then
+    Write("Different")
+EndIf
+
+============================================================
+10. LOGICAL OPERATORS
+============================================================
+
+Support:
+
+AND
+OR
+NOT
+
+Examples:
+
+If age >= 18 AND age <= 60 Then
+    Write("Allowed")
+EndIf
+
+If age < 18 OR age > 60 Then
+    Write("Not allowed")
+EndIf
+
+If NOT active Then
+    Write("Inactive")
+EndIf
+
+Logical operators are case-insensitive.
+
+============================================================
+11. READ
+============================================================
+
+Syntax:
+
+Read(variable)
+
+Examples:
+
+Read(age)
+Read(name)
+Read(numbers[i])
+Read(matrix[i][j])
+
+When execution reaches Read(), the application must pause and show an input interface.
+
+The user enters a value and execution continues.
+
+Input must be converted according to the declared type.
+
+For example:
+
+Integer -> integer
+Real -> decimal number
+String -> text
+Boolean -> True/False
+Character -> character
+
+Invalid input must show a clear error.
+
+============================================================
+12. WRITE
+============================================================
+
+Support:
+
+Write("Hello")
+
+Write(variable)
+
+Write("Age = ", age)
+
+Write("Result = ", a + b)
+
+Multiple expressions must be supported.
+
+Example:
+
+Write("Student: ", name, " Average: ", average)
+
+Output should appear in the application's Output panel.
+
+============================================================
+13. IF / ELSE
+============================================================
+
+Syntax:
+
+If condition Then
+    ...
+EndIf
+
+Example:
+
+If age >= 18 Then
+    Write("You are allowed.")
+EndIf
+
+With Else:
+
+If age >= 18 Then
+    Write("You are allowed.")
+Else
+    Write("You are not allowed.")
+EndIf
+
+Then is REQUIRED.
+
+Correct:
+
+If age >= 18 Then
+
+Incorrect:
+
+If age >= 18
+
+The parser must report:
+
+Line X: Expected Then after If condition.
+
+Nested If must work.
+
+Example:
+
+If age >= 18 Then
+
+    If age >= 60 Then
+        Write("Senior")
+    Else
+        Write("Adult")
+    EndIf
+
+Else
+    Write("Minor")
+EndIf
+
+============================================================
+14. FOR LOOP
+============================================================
+
+The syntax MUST require Do.
+
+Correct:
+
+For i <- 1 To 10 Do
+    Write(i)
+EndFor
+
+Incorrect:
+
+For i <- 1 To 10
+    Write(i)
+EndFor
+
+The parser must report:
+
+Line X: Expected Do after For statement.
+
+Support:
+
+For i <- 1 To 10 Do
+
+Support Step:
+
+For i <- 1 To 10 Step 2 Do
+    Write(i)
+EndFor
+
+Support descending:
+
+For i <- 10 To 1 Step -1 Do
+    Write(i)
+EndFor
+
+Nested loops must work:
+
+For i <- 1 To 3 Do
+
+    For j <- 1 To 3 Do
+        Write(i, j)
+    EndFor
+
+EndFor
+
+============================================================
+15. WHILE LOOP
+============================================================
+
+Do is REQUIRED.
+
+Correct:
+
+While x < 10 Do
+    x <- x + 1
+EndWhile
+
+Incorrect:
+
+While x < 10
+    x <- x + 1
+EndWhile
+
+Error:
+
+Line X: Expected Do after While condition.
+
+Nested While loops must work.
+
+Protect against infinite loops.
+
+For example, if an algorithm executes an extremely large number of iterations, stop execution and report:
+
+Runtime Error:
+Possible infinite loop detected.
+
+Do not freeze the application.
+
+============================================================
+16. REPEAT / UNTIL
+============================================================
+
+Support:
+
+Repeat
+    ...
+Until condition
+
+Example:
+
+Repeat
+    Read(number)
+Until number > 0
+
+The body executes at least once.
+
+============================================================
+17. FUNCTIONS
+============================================================
+
+Functions MUST have EndFunction.
+
+This is extremely important.
+
+Correct:
+
+Function Power(N : Integer) : Integer
+
+Variables
+    P : Integer
+
+Begin
+    P <- N ^ 2
+    Return P
+EndFunction
+
+Do NOT require the main program End keyword to close a function.
+
+EndFunction closes a function.
+
+The parser must correctly recognize it.
+
+There must be NO:
+
+"Missing EndFunction"
+
+error when EndFunction exists.
+
+Functions can have parameters:
+
+Function Add(a : Integer, b : Integer) : Integer
+
+Begin
+    Return a + b
+EndFunction
+
+Function declarations may contain:
+
+Variables
+Begin
+If
+Else
+EndIf
+For
+EndFor
+While
+EndWhile
+Return
+Function calls
+Read
+Write
+
+Functions can return:
+
+Integer
+Real
+String
+Boolean
+Character
+
+Return is only valid inside a Function.
+
+============================================================
+18. FUNCTION CALLS
+============================================================
+
+Example:
+
+Function Add(a : Integer, b : Integer) : Integer
+
+Begin
+    Return a + b
+EndFunction
+
+
+Algorithm Test
+
+Variables
+    result : Integer
+
+Begin
+    result <- Add(5, 10)
+    Write("Result = ", result)
+End
+
+Support:
+
+result <- Add(5, 10)
+
+Write(Add(5, 10))
+
+Functions can call other functions.
+
+Nested function calls should work.
+
+Example:
+
+result <- Add(Multiply(2, 3), 10)
+
+============================================================
+19. PROCEDURES
+============================================================
+
+Support procedures.
+
+Example:
+
+Procedure SayHello()
+
+Begin
+    Write("Hello")
+EndProcedure
+
+Call:
+
+SayHello()
+
+Procedures do not return a value.
+
+Procedures MUST end with:
+
+EndProcedure
+
+============================================================
+20. LOCAL VARIABLES
+============================================================
+
+Functions and procedures can have local variables.
+
+Example:
+
+Function Calculate(a : Integer) : Integer
+
+Variables
+    result : Integer
+
+Begin
+    result <- a * 2
+    Return result
+EndFunction
+
+Local variables must have their own scope.
+
+The interpreter must correctly manage:
+
+Global/main variables
+Function parameters
+Function local variables
+
+============================================================
+21. RECURSION
+============================================================
+
+Support recursive functions if possible.
+
+Example:
+
+Function Factorial(n : Integer) : Integer
+
+Begin
+    If n <= 1 Then
+        Return 1
+    Else
+        Return n * Factorial(n - 1)
+    EndIf
+EndFunction
+
+The interpreter must prevent stack overflow or uncontrolled recursion.
+
+============================================================
+22. ARRAYS / TABLES
+============================================================
+
+IMPORTANT:
+
+For this educational language, ARRAY INDEXING STARTS AT 1.
+
+Do NOT use zero-based indexing for the user's pseudocode.
+
+Example:
+
+numbers : Integer[5]
+
+Valid indexes:
+
+numbers[1]
+numbers[2]
+numbers[3]
+numbers[4]
+numbers[5]
+
+Invalid:
+
+numbers[0]
+
+The internal Dart implementation can use zero-based indexing if necessary, but the pseudocode language MUST expose one-based indexing.
+
+Example:
+
+Algorithm ArrayTest
+
+Variables
+    numbers : Integer[5]
+    i : Integer
+
+Begin
+
+    For i <- 1 To 5 Do
+        numbers[i] <- i * 10
+    EndFor
+
+    For i <- 1 To 5 Do
+        Write(numbers[i])
+    EndFor
+
+End
+
+Expected:
+
+10
+20
+30
+40
+50
+
+============================================================
+23. ARRAY INPUT
+============================================================
+
+This must work:
+
+For i <- 1 To 5 Do
+    Read(numbers[i])
+EndFor
+
+============================================================
+24. ARRAY FUNCTIONS
+============================================================
+
+Support useful functions:
+
+Length(array)
+
+For example:
+
+Write(Length(numbers))
+
+============================================================
+25. MATRICES
+============================================================
+
+Matrices also use ONE-BASED indexing.
+
+Declaration:
+
+matrix : Integer[3][3]
+
+Valid:
+
+matrix[1][1]
+matrix[1][2]
+matrix[3][3]
+
+NOT:
+
+matrix[0][0]
+
+Example:
+
+Algorithm MatrixTest
+
+Variables
+    matrix : Integer[3][3]
+    i, j : Integer
+
+Begin
+
+    For i <- 1 To 3 Do
+
+        For j <- 1 To 3 Do
+            matrix[i][j] <- i * j
+        EndFor
+
+    EndFor
+
+    For i <- 1 To 3 Do
+
+        For j <- 1 To 3 Do
+            Write(matrix[i][j])
+        EndFor
+
+    EndFor
+
+End
+
+Expected matrix values:
+
+1 2 3
+2 4 6
+3 6 9
+
+============================================================
+26. MATRIX INPUT
+============================================================
+
+This must work:
+
+For i <- 1 To 3 Do
+    For j <- 1 To 3 Do
+        Read(matrix[i][j])
+    EndFor
+EndFor
+
+============================================================
+27. STRINGS
+============================================================
+
+Support String variables.
+
+Example:
+
+Variables
+    firstName, lastName : String
+
+Begin
+    Read(firstName)
+    Read(lastName)
+
+    Write(firstName + " " + lastName)
+End
+
+Support:
+
+Length(text)
+Upper(text)
+Lower(text)
+Substring(text, start, length)
+
+String indexes should also be clearly documented.
+
+If using indexing for strings, use one-based indexing for consistency.
+
+============================================================
+28. CHARACTER
+============================================================
+
+Support:
+
+letter : Character
+
+Example:
+
+letter <- 'A'
+
+If single quotes are supported, implement them correctly.
+
+============================================================
+29. BOOLEAN
+============================================================
+
+Support:
+
+True
+False
+
+Case-insensitive.
+
+Examples:
+
+active <- True
+
+valid <- age >= 18
+
+If valid Then
+    Write("Valid")
+EndIf
+
+============================================================
+30. BUILT-IN MATHEMATICAL FUNCTIONS
+============================================================
+
+Support:
+
+Abs(x)
+Sqrt(x)
+Pow(x, y)
+Min(a, b)
+Max(a, b)
+Round(x)
+Floor(x)
+Ceil(x)
+Random(min, max)
+
+============================================================
+31. COMMENTS
+============================================================
+
+Support:
+
+// This is a comment
+
+Everything after // on that line is ignored.
+
+============================================================
+32. PROGRAM ORGANIZATION
+============================================================
+
+The language should allow functions/procedures before the main algorithm body.
+
+Example:
+
+Algorithm Test
+
+Function Add(a : Integer, b : Integer) : Integer
+
+Begin
+    Return a + b
+EndFunction
+
+
+Procedure Hello()
+
+Begin
+    Write("Hello")
+EndProcedure
+
+
+Variables
+    result : Integer
+
+Begin
+    Hello()
+
+    result <- Add(5, 10)
+
+    Write(result)
+End
+
+The parser must correctly understand declarations and the main program.
+
+============================================================
+33. CASE INSENSITIVITY
+============================================================
+
+Keywords are case-insensitive.
+
+Identifiers should preferably remain case-sensitive, unless there is a strong reason to make them case-insensitive.
+
+At minimum:
+
+Keywords:
+
+Algorithm
+Variables
+Begin
+End
+Read
+Write
+If
+Then
+Else
+EndIf
+For
+To
+Step
+Do
+EndFor
+While
+EndWhile
+Repeat
+Until
+Function
+Return
+EndFunction
+Procedure
+EndProcedure
+True
+False
+AND
+OR
+NOT
+
+must be case-insensitive.
+
+============================================================
+34. ERROR HANDLING
+============================================================
+
+The application must NEVER crash because of invalid pseudocode.
+
+Create a proper error system.
+
+Examples:
+
+Line 8:
+Expected Do after For statement.
+
+Line 12:
+Expected Then after If condition.
+
+Line 20:
+Missing EndIf.
+
+Line 25:
+Missing EndFor.
+
+Line 30:
+Missing EndWhile.
+
+Line 40:
+Missing EndFunction.
+
+Line 50:
+Missing EndProcedure.
+
+Line 12:
+Variable 'x' has not been declared.
+
+Line 15:
+Array index out of range.
+
+Line 18:
+Cannot assign String to Integer.
+
+Line 20:
+Return is only allowed inside a Function.
+
+Errors should ideally highlight the corresponding line in the editor.
+
+============================================================
+35. INTERPRETER ARCHITECTURE
+============================================================
+
+Do NOT implement this using simple string replacements.
+
+Build a real small interpreter.
+
+Use:
+
+1. Lexer / Tokenizer
+2. Parser
+3. AST or another structured intermediate representation
+4. Runtime / Interpreter
+5. Environment / Scope system
+6. Expression evaluator
+7. Error system
+
+The lexer must recognize:
+
+Identifiers
+Numbers
+Strings
+Characters
+Keywords
+Operators
+Parentheses
+Brackets
+Commas
+Colon
+Assignment <-
+
+The parser must correctly handle nested structures.
+
+The interpreter must execute the parsed representation.
+
+============================================================
+36. BLOCK MATCHING
+============================================================
+
+The parser must correctly match:
+
+If -> EndIf
+
+For -> EndFor
+
+While -> EndWhile
+
+Function -> EndFunction
+
+Procedure -> EndProcedure
+
+Repeat -> Until
+
+Main Begin -> End
+
+Nested blocks must work.
+
+Example:
+
+Function Test(x : Integer) : Integer
+
+Variables
+    i : Integer
+
+Begin
+
+    For i <- 1 To 10 Do
+
+        If i > x Then
+            Write(i)
+        EndIf
+
+    EndFor
+
+    Return x
+
+EndFunction
+
+This must parse correctly.
+
+============================================================
+37. INFINITE LOOP PROTECTION
+============================================================
+
+The interpreter must never freeze the desktop application.
+
+Add an execution limit.
+
+If the algorithm runs too many instructions/iterations, stop it.
+
+Display:
+
+Runtime Error:
+Possible infinite loop detected.
+
+Allow the user to press Stop manually.
+
+============================================================
+38. DESKTOP USER INTERFACE
+============================================================
+
+Create a simple modern desktop interface.
+
+Dark theme by default.
+
+Main layout:
+
+-------------------------------------------------------------
+| English Algo Runner             New Open Save   Run Stop |
+-------------------------------------------------------------
+|                              |                            |
+|                              |                            |
+|          CODE EDITOR         |          OUTPUT            |
+|                              |                            |
+|                              |                            |
+|                              |                            |
+|                              |                            |
+-------------------------------------------------------------
+| Status: Ready                                             |
+-------------------------------------------------------------
+
+The application should feel like a small IDE, but remain extremely simple.
+
+============================================================
+39. CODE EDITOR
+============================================================
+
+Use a proper code editor if a lightweight stable Flutter package is necessary.
+
+The editor should support:
+
+- Line numbers
+- Monospace font
+- Syntax highlighting
+- Dark theme
+- Basic indentation
+- Selection
+- Copy/paste
+- Undo/redo
+
+Syntax highlighting should recognize the language keywords.
+
+Highlight:
+
+Algorithm
+Variables
+Begin
+End
+Function
+EndFunction
+Procedure
+EndProcedure
+If
+Then
+Else
+EndIf
+For
+To
+Step
+Do
+EndFor
+While
+EndWhile
+Repeat
+Until
+Read
+Write
+Return
+
+Strings should have a different syntax color.
+
+Numbers should have a different syntax color.
+
+Comments should be visually distinct.
+
+============================================================
+40. OUTPUT PANEL
+============================================================
+
+Output should look like a simple terminal.
+
+Example:
+
+OUTPUT
+--------------------------------
+
+Enter your age:
+20
+
+You are allowed to open this app.
+
+--------------------------------
+
+Include:
+
+Clear Output
+
+============================================================
+41. INPUT UI
+============================================================
+
+When Read() is encountered:
+
+Pause execution.
+
+Show an input field in the output area or a small input dialog.
+
+Example:
+
+OUTPUT
+
+Enter your age:
+
+[ 20                         ]
+
+                    [Submit]
+
+Then continue execution.
+
+The input system must not block the entire Flutter UI.
+
+============================================================
+42. TOOLBAR
+============================================================
+
+Buttons:
+
+New
+Open
+Save
+Save As
+Run
+Stop
+Clear Output
+
+Keyboard shortcuts:
+
+Ctrl + N -> New
+Ctrl + O -> Open
+Ctrl + S -> Save
+F5 -> Run
+Shift + F5 -> Stop
+
+============================================================
+43. FILE FORMAT
+============================================================
+
+Use:
+
+.algo
+
+Example:
+
+student.algo
+
+Allow:
+
+New
+Open
+Save
+Save As
+
+Use native Windows file dialogs where practical.
+
+============================================================
+44. EXAMPLE PROGRAMS
+============================================================
+
+Include a collection of example algorithms inside the application.
+
+At minimum:
+
+1. Hello World
+2. Addition
+3. Age Check
+4. If / Else
+5. For Loop
+6. While Loop
+7. Array
+8. Matrix
+9. Function
+10. Procedure
+11. Factorial
+12. Search
+13. Maximum / Minimum
+14. Average
+15. Sorting
+
+Users should be able to select an example and load it into the editor.
+
+============================================================
+45. REQUIRED SIMPLE EXAMPLE
+============================================================
+
+This MUST run:
+
+Algorithm Addition
+
+Variables
+    a, b : Integer
+
+Begin
+    a <- 5
+    b <- 10
+    a <- a + b
+    Write("Result = ", a)
+End
+
+Expected:
+
+Result = 15
+
+============================================================
+46. REQUIRED FUNCTION EXAMPLE
+============================================================
+
+This MUST run:
+
+Algorithm FunctionTest
+
+Function Power(N : Integer) : Integer
+
+Variables
+    P : Integer
+
+Begin
+    P <- N ^ 2
+    Return P
+EndFunction
+
+Variables
+    X : Integer
+
+Begin
+    Write("Enter a number:")
+    Read(X)
+
+    Write("The power is: ", Power(X))
+End
+
+If the user enters:
+
+5
+
+Expected:
+
+The power is: 25
+
+============================================================
+47. REQUIRED FOR EXAMPLE
+============================================================
+
+This MUST run:
+
+Algorithm Display
+
+Variables
+    i : Integer
+
+Begin
+    For i <- 1 To 10 Do
+        Write("bac 2027")
+    EndFor
+End
+
+Expected ten lines:
+
+bac 2027
+bac 2027
+bac 2027
+bac 2027
+bac 2027
+bac 2027
+bac 2027
+bac 2027
+bac 2027
+bac 2027
+
+============================================================
+48. REQUIRED MATRIX EXAMPLE
+============================================================
+
+This MUST run:
+
+Algorithm MatrixTest
+
+Variables
+    matrix : Integer[3][3]
+    i, j : Integer
+
+Begin
+
+    For i <- 1 To 3 Do
+        For j <- 1 To 3 Do
+            matrix[i][j] <- i * j
+        EndFor
+    EndFor
+
+    Write("Matrix:")
+
+    For i <- 1 To 3 Do
+        For j <- 1 To 3 Do
+            Write(matrix[i][j], " ")
+        EndFor
+    EndFor
+
+End
+
+Expected values:
+
+1 2 3
+2 4 6
+3 6 9
+
+============================================================
+49. REQUIRED LARGE TEST
+============================================================
+
+Include this as a built-in example:
+
+Algorithm StudentGrades
+
+Function CalculateAverage(values : Real[5]) : Real
+
+Variables
+    sum : Real
+    i : Integer
+
+Begin
+    sum <- 0
+
+    For i <- 1 To 5 Do
+        sum <- sum + values[i]
+    EndFor
+
+    Return sum / 5
+EndFunction
+
+
+Function FindMaximum(values : Real[5]) : Real
+
+Variables
+    maximum : Real
+    i : Integer
+
+Begin
+    maximum <- values[1]
+
+    For i <- 2 To 5 Do
+        If values[i] > maximum Then
+            maximum <- values[i]
+        EndIf
+    EndFor
+
+    Return maximum
+EndFunction
+
+
+Function FindMinimum(values : Real[5]) : Real
+
+Variables
+    minimum : Real
+    i : Integer
+
+Begin
+    minimum <- values[1]
+
+    For i <- 2 To 5 Do
+        If values[i] < minimum Then
+            minimum <- values[i]
+        EndIf
+    EndFor
+
+    Return minimum
+EndFunction
+
+
+Variables
+    grades : Real[5]
+    average : Real
+    maximum : Real
+    minimum : Real
+    i : Integer
+
+Begin
+
+    Write("=== STUDENT GRADES ===")
+    Write("Enter 5 grades:")
+
+    For i <- 1 To 5 Do
+        Write("Grade ", i, ": ")
+        Read(grades[i])
+    EndFor
+
+    average <- CalculateAverage(grades)
+    maximum <- FindMaximum(grades)
+    minimum <- FindMinimum(grades)
+
+    Write("")
+    Write("=== RESULTS ===")
+    Write("Average = ", average)
+    Write("Highest = ", maximum)
+    Write("Lowest = ", minimum)
+
+    If average >= 10 Then
+        Write("Status: PASSED")
+    Else
+        Write("Status: FAILED")
+    EndIf
+
+End
+
+This must execute correctly.
+
+============================================================
+50. TESTING
+============================================================
+
+Create automated unit tests for:
+
+Lexer
+Parser
+Expressions
+Variables
+Assignment
+Read
+Write
+If
+Else
+Nested If
+For
+For Step
+Descending For
+Nested For
+While
+Repeat
+Functions
+Function parameters
+Function Return
+Function local variables
+Procedures
+Arrays
+One-based indexing
+Matrices
+Nested matrix loops
+String functions
+Boolean operations
+Comments
+Error handling
+Infinite loop protection
+
+Test all required example programs.
+
+The project must pass the tests before being considered complete.
+
+============================================================
+51. IMPORTANT INDEXING RULE
+============================================================
+
+This is a very important design decision.
+
+The pseudocode language uses ONE-BASED indexing.
+
+Arrays:
+
+numbers[1] ... numbers[n]
+
+Matrices:
+
+matrix[1][1] ... matrix[rows][columns]
+
+FOR loops normally start from 1 when counting.
+
+Example:
+
+For i <- 1 To 10 Do
+
+This is the preferred educational convention.
+
+Internally, Dart may use zero-based arrays, but convert indexes correctly at the interpreter boundary.
+
+Never expose Dart's zero-based indexing to the pseudocode user.
+
+============================================================
+52. LANGUAGE DESIGN PHILOSOPHY
+============================================================
+
+The language should feel like a real educational algorithm language.
+
+Keep syntax simple.
+
+Prefer readable constructs:
+
+For i <- 1 To 10 Do
+    ...
+EndFor
+
+Instead of complicated programming-language syntax.
+
+The application is intended for students learning algorithms, programming logic, arrays, matrices, functions and control structures.
+
+============================================================
+53. GITHUB
+============================================================
+
+Prepare the project for GitHub.
+
+Include:
+
+README.md
+LICENSE
+.gitignore
+
+README must contain:
+
+- Project description
+- Features
+- Language syntax
+- Installation
+- Running on Windows
+- Building Windows executable
+- Example algorithm
+- Supported types
+- Supported loops
+- Functions
+- Arrays
+- Matrices
+- Error handling
+- Contribution instructions
+
+Also explain clearly:
+
+ARRAYS AND MATRICES USE ONE-BASED INDEXING.
+
+============================================================
+54. WINDOWS BUILD
+============================================================
+
+The project must support:
+
+flutter run -d windows
+
+and:
+
+flutter build windows
+
+Do not require Android, iOS or web to use the application.
+
+The primary target is Windows desktop.
+
+============================================================
+55. DEPENDENCIES
+============================================================
+
+Keep dependencies minimal.
+
+Do not add packages unless necessary.
+
+Prefer Flutter/Dart standard libraries.
+
+If you use an external code editor package, choose a stable package compatible with current Flutter desktop.
+
+Do not use:
+
+Firebase
+Supabase
+Cloud services
+Authentication
+Databases
+Paid APIs
+Online services
+
+============================================================
+56. PROJECT STRUCTURE
+============================================================
+
+Use a clean but not over-engineered structure.
+
+For example:
+
+lib/
+    main.dart
+
+    app/
+        app.dart
+
+    interpreter/
+        lexer/
+        parser/
+        ast/
+        runtime/
+        errors/
+
+    editor/
+    ui/
+    examples/
+    services/
+
+The exact structure can be improved if you have a better architecture.
+
+Do not create dozens of unnecessary files.
+
+============================================================
+57. IMPORTANT IMPLEMENTATION REQUIREMENT
+============================================================
+
+The parser and interpreter must actually understand the language.
+
+Do not make fake buttons.
+
+Do not make Run simply print predefined results.
+
+The Run button must execute the user's actual pseudocode.
+
+If the user changes:
+
+a <- 5
+
+to:
+
+a <- 100
+
+the output must change accordingly.
+
+Functions must actually execute.
+
+Loops must actually iterate.
+
+Conditions must actually branch.
+
+Arrays and matrices must actually store and retrieve values.
+
+Read() must actually receive user input.
+
+============================================================
+58. NO HARDCODED DEMOS
+============================================================
+
+The examples are only examples.
+
+The interpreter must work with arbitrary valid programs written using the supported language.
+
+Do not hardcode:
+
+"if program contains MatrixTest, show matrix"
+
+or similar shortcuts.
+
+Implement the real interpreter.
+
+============================================================
+59. FINAL QUALITY REQUIREMENT
+============================================================
+
+Before finishing:
+
+1. Verify the project compiles.
+2. Verify the lexer works.
+3. Verify the parser works.
+4. Verify the interpreter works.
+5. Verify nested blocks.
+6. Verify functions with EndFunction.
+7. Verify procedures with EndProcedure.
+8. Verify For requires Do.
+9. Verify While requires Do.
+10. Verify <- assignment.
+11. Verify one-based arrays.
+12. Verify one-based matrices.
+13. Verify Read.
+14. Verify Write.
+15. Verify errors include line numbers.
+16. Verify infinite loops cannot freeze the UI.
+17. Verify the required example programs.
+
+Do not declare the project complete if the core examples cannot execute.
+
+============================================================
+60. FINAL RESPONSE FORMAT
+============================================================
+
+I want the complete project code.
+
+Start with the project structure.
+
+Then provide every required file.
+
+Do not omit important files with statements such as:
+
+"the rest of the code is similar"
+
+or:
+
+"implement this yourself"
+
+or:
+
+"for brevity..."
+
+Everything required for the application to work must be included.
+
+The result should be a complete GitHub-ready Flutter Windows desktop pseudocode interpreter called:
+
+English Algo Runner
+
+The primary goal is:
+
+WRITE ALGORITHM -> RUN -> INPUT -> OUTPUT
+
+Keep the interface simple and make the interpreter reliable.
